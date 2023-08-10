@@ -16,9 +16,7 @@ async def measure_runtime() -> float:
         Return:
             float random numbers
     """
-    first_time = time.perf_counter()
-    tasks = [async_comprehension() for _ in range(4)]
-    await asyncio.gather(*tasks)
-    elapsed = time.perf_counter()
-
-    return (elapsed - first_time)
+    start_time = time.perf_counter()
+    await asyncio.gather(async_comprehension(), async_comprehension(),
+                         async_comprehension(), async_comprehension())
+    return time.perf_counter() - start_time
